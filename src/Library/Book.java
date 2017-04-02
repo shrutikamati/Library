@@ -75,6 +75,19 @@ public class Book implements Serializable {
 	public void setCategory(Category category) {
 		this.category = category;
 	}
+
+	public Object[] createBookTableRowData() {
+		Object[] row = new Object[8];
+		row[0] = getBookName();
+		row[1] = getAuthor();
+		row[2] = getIsbn();
+		row[3] = getLastRented();
+		row[4] = getAddedDate();
+		row[5] = isRented();
+		row[6] = getOwnerId();
+		row[7] = getCategory();
+		return row;
+	}
 	
 	
 	
