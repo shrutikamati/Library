@@ -80,7 +80,7 @@ public class FrmBooksManagement extends JFrame {
 		int nBook = books.size();
 
 		for (int i = 0; i < nBook; i++) {
-			dtm.addRow(createBookTableRowData(books.get(i)));
+			dtm.addRow(books.get(i).createBookTableRowData());
 		}
 	}
 	
@@ -362,28 +362,13 @@ public class FrmBooksManagement extends JFrame {
 			int nBooks = books.size();// number of books
 			Object[][] booksData = new Object[nBooks][];
 			for (int i = 0; i < nBooks; i++) {
-				booksData[i] = createBookTableRowData(books.get(i));
+				booksData[i] = books.get(i).createBookTableRowData();
 			}
 
 			return booksData;
 		}
 	}
 
-	private Object[] createBookTableRowData(Book book) {
-		Object[] row = new Object[8];
-
-		row[0] = book.getBookName();
-		row[1] = book.getAuthor();
-		row[2] = book.getIsbn();
-		row[3] = book.getLastRented();
-		row[4] = book.getAddedDate();
-		row[5] = book.isRented();
-		row[6] = book.getOwnerId();
-		row[7] = book.getCategory();
-
-		return row;
-	}
-	
 	private class SelectionListener implements ListSelectionListener {
 		private JTable target;
 		
