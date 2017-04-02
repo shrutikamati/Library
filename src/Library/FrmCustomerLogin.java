@@ -11,24 +11,17 @@ import java.awt.event.*;
  * edit by Li Huang 2014.8.14 fix bug
  */
 
-public class FrmCustomerLogin extends JFrame{
+public class FrmCustomerLogin extends Login{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private Library library;
 	private User currentUser;
 	
 	private JLabel lblUserName, lblPassWord;
-	private JTextField txtUserName;
-	private JPasswordField pwdPassWord;
 	private JButton btnLogin, btnClose;
 	private String pwd, user;
-	
-	private FrmCustomerLogin(){
-		this(null);
-	}
 	
 	FrmCustomerLogin(Library l){
 		this.library=l;
@@ -46,11 +39,11 @@ public class FrmCustomerLogin extends JFrame{
 		lblPassWord.setText("Password:");
 		lblPassWord.setBounds(170, 100, 70, 30);
 		
-		txtUserName = new JTextField(20);
-		txtUserName.setBounds(240, 40, 200, 30);
+		loginName = new JTextField(20);
+		loginName.setBounds(240, 40, 200, 30);
 		
-		pwdPassWord = new JPasswordField(20);
-		pwdPassWord.setBounds(240, 100, 200, 30);
+		loginPassWord = new JPasswordField(20);
+		loginPassWord.setBounds(240, 100, 200, 30);
 		
 		btnLogin = new JButton("Login");
 		btnLogin.setBounds(230, 160, 75, 30);
@@ -59,9 +52,9 @@ public class FrmCustomerLogin extends JFrame{
 		btnClose.setBounds(340, 160, 75, 30);
 		
 		this.add(lblUserName);
-		this.add(txtUserName);
+		this.add(loginName);
 		this.add(lblPassWord);
-		this.add(pwdPassWord);
+		this.add(loginPassWord);
 		this.add(btnLogin);
 		this.add(btnClose);
 		this.setResizable(false);
@@ -71,8 +64,8 @@ public class FrmCustomerLogin extends JFrame{
 		btnLogin.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent ae){
-				pwd = new String(pwdPassWord.getPassword());
-				user = txtUserName.getText();
+				pwd = new String(loginPassWord.getPassword());
+				user = loginName.getText();
 				if(user.length() == 0){
 					JOptionPane.showMessageDialog(FrmCustomerLogin.this, "Please enter your username.", "Login Failed", JOptionPane.ERROR_MESSAGE);
 				} else{
@@ -87,11 +80,11 @@ public class FrmCustomerLogin extends JFrame{
 								new FrmCustomerInterface(library, currentUser);
 							} else{
 								JOptionPane.showMessageDialog(FrmCustomerLogin.this, "Invalid username or password.", "Login Failed", JOptionPane.ERROR_MESSAGE);
-								pwdPassWord.setText("");
+								loginPassWord.setText("");
 							}
 						} else{
 							JOptionPane.showMessageDialog(FrmCustomerLogin.this, "Invalid username or password.", "Login Failed", JOptionPane.ERROR_MESSAGE);
-							pwdPassWord.setText("");
+							loginPassWord.setText("");
 						}
 					}
 				}
