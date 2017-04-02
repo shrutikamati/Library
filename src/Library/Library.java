@@ -128,11 +128,8 @@ public class Library {
 		if (!destDir.exists()) {
 			destDir.mkdir();
 		}
-		String destPath = destDir.toString() + "\\" + newImgFilename;
-		FileOutputStream fo;
+		FileOutputStream fo = fo(newImgFilename, destDir);
 		try {
-			fo = new FileOutputStream(destPath);
-
 			BufferedOutputStream out = new BufferedOutputStream(fo);
 			byte[] buf = new byte[1024];
 			int len = in.read(buf);
@@ -149,6 +146,18 @@ public class Library {
 		} catch (Exception e) {
 			return false;
 		}
+	}
+
+
+	private FileOutputStream fo(String newImgFilename, File destDir) {
+		String destPath = destDir.toString() + "\\" + newImgFilename;
+		FileOutputStream fo;
+		try {
+			fo = new FileOutputStream(destPath);
+		} catch (Exception e) {
+			return false;
+		}
+		return fo;
 	}
 	
 	void addBook(Book b){
@@ -411,9 +420,7 @@ public class Library {
 			Book tempBook = bookItr.next();
 			if(tempBook.getIsbn().equals(isbn)){
 				//this book found
-				int overdue_time_seconds = (int)(returnDate.getTime() - tempBook.getLastRented().getTime() - OverdueTimeLimit )/1000;
-				if (overdue_time_seconds<0)
-					overdue_time_seconds=0;
+				int overdue_time_seconds = overdue_time_seconds(returnDate, tempBook);
 				double fine_amount = overdue_time_seconds*FINE_PER_SECOND;
 				return fine_amount;
 			}//end if
@@ -421,7 +428,14 @@ public class Library {
 		
 		return 0.0;
 	}
-	
+	private int overdue_time_seconds(Date returnDate, Book tempBook) {
+		int overdue_time_seconds = (int) (returnDate.getTime() - tempBook.getLastRented().getTime() - OverdueTimeLimit)
+				/ 1000;
+		if (overdue_time_seconds < 0)
+			overdue_time_seconds = 0;
+		return overdue_time_seconds;
+	}
+
 	public Book getBookByISBN(String isbn){
 		
 		Iterator<Book> bookItr = bookList.iterator();
