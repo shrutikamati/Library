@@ -11,7 +11,7 @@ import javax.swing.*;
  * add 2014.8.11
  * edit by Li Huang, Yan Run 2014.8.15.  Allow normal admin user login
  */
-public class FrmAdminLogin extends JFrame {
+public class FrmAdminLogin extends Login {
 
 	/**
 	 * 
@@ -19,10 +19,6 @@ public class FrmAdminLogin extends JFrame {
 	private static final long serialVersionUID = 1L;
 	// FrmAdministratorLog frmAdminLog = new FrmAdministratorLog();
 
-	private Library library;
-	private JTextField loginName;
-	private JPasswordField loginPassWord;
-	
 	public FrmAdminLogin() {
 		this(null);
 	}
