@@ -40,7 +40,7 @@ public class PanelBookInfo extends JPanel {
 	 * Create the panel.
 	 */
 	public PanelBookInfo() {
-		setBorder(new TitledBorder(null, "BookInfo", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		setBorder(new TitledBorder(null, "BookInfo", TitledBorder.LEADING, TitledBorder.TOP));
 		
 		lblBookImg = new JLabel("No Image");
 		lblBookImg.setBorder(new LineBorder(Color.black));
