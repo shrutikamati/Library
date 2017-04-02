@@ -290,11 +290,6 @@ public class FrmUsersManagement extends JFrame{
 	}
 	
 	private void addUser(User user) {
-		if (user==null) {
-			JOptionPane.showMessageDialog(null, "Cannot add null user!");
-			return;
-		}
-		
 		if (! validator.isUserValid(user)) {
 			JOptionPane.showMessageDialog(null, "Cannot add invalid user!");
 			return;
@@ -306,6 +301,7 @@ public class FrmUsersManagement extends JFrame{
 			return;
 		}
 	}
+
 	
 	/**
 	 * Test
